@@ -11,15 +11,16 @@ import sys
 CREDENTIALS_DIRECTORY = os.environ["CREDENTIALS_DIRECTORY"]
 STATE_DIRECTORY = os.environ["STATE_DIRECTORY"]
 
-os.makedirs(os.path.join(STATE_DIRECTORY, "credentials"), exist_ok=True)
-
 def post(name):
     flags = []
 
     for f in glob.glob(os.path.join(CREDENTIALS_DIRECTORY, "coffer.recipients.*")):
         flags.append(f"--recipients-file={f}")
 
-    subprocess.run(["age", "--encrypt", *flags, "--output", os.path.join(STATE_DIRECTORY, "credentials", name)], stdin=sys.stdin, check=True)
+    output = os.path.join(STATE_DIRECTORY, "credentials", name)
+    age = subprocess.Popen(["age", "--encrypt", *flags], stdin=sys.stdin, stdout=subprocess.PIPE)
+    subprocess.run(["install", "-D", "--mode=640", "/dev/stdin", output], stdin=age.stdout, check=True)
+    age.wait()
 
 
 def get(name):
