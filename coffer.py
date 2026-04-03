@@ -21,12 +21,12 @@ def post(name):
 
 
 def get(name):
-    args = []
+    flags = []
 
     for f in glob.glob(os.path.join(CREDENTIALS_DIRECTORY, "coffer.identities.*")):
-        args.append(f"--identity={f}")
+        flags.append(f"--identity={f}")
 
-    subprocess.run(["age", "--decrypt", *args, os.path.join(STATE_DIRECTORY, "credentials", name)], check=True)
+    subprocess.run(["age", "--decrypt", *flags, os.path.join(STATE_DIRECTORY, "credentials", name)], check=True)
 
 
 # Check if the peer address is a systemd abstract namespace socket
