@@ -25,8 +25,13 @@ $(ROOTFS)/usr/lib/systemd/system/%: dist/usr/lib/systemd/system/%
 	install --directory --mode=755 $(ROOTFS)/usr/lib/systemd/system
 	install --mode=644 $< $@
 
-install: rootfs
+install: install-tree
+
+install-tree: rootfs
 	cp --recursive $(ROOTFS) /var/lib/portables/coffer
+
+install-raw: 
+	mkfs.erofs -zzstd --all-root /var/lib/portables/coffer.raw $(ROOTFS)/
 
 clean:
 	rm -rf $(ROOTFS)
