@@ -4,3 +4,6 @@ Description=Credential encryption FIFO
 [Socket]
 ListenStream=/run/coffer.socket
 Accept=yes
+
+[Install]
+WantedBy=sockets.target
