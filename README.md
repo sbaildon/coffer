@@ -58,6 +58,8 @@ delimited list of keys.
 > `age-keygen -pq > coffer_identity`
 >
 > `scp <(cat coffer_identity | age-keygen -y) root@remote:/etc/credstore/coffer.recipients.laptop`
+>
+> Be sure to back up `coffer_identity`
 
 ## Usage
 
