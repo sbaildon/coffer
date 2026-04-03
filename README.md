@@ -4,18 +4,18 @@ Kind of like Vault, with all the pros and cons of being much simpler.
 
 ## Installation
 
-Install [age](https://age-encryption.org), as Coffer requires shelling out for credential management
-
-```bash
-dnf install -y age
-```
-
 Coffer installs as a systemd [portable service](https://systemd.io/PORTABLE_SERVICES/),
 and you may need to install `portablectl` if it's not available by default
 with your distribution
 
 ```bash
 dnf install -y systemd-container
+```
+
+Install [age](https://age-encryption.org), as Coffer requires shelling out for credential management
+
+```bash
+dnf install -y age
 ```
 
 Install Coffer
