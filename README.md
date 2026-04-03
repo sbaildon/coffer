@@ -54,7 +54,9 @@ delimited list of keys.
 > It's recommended you create at least one more age identity on a remote machine that can be backed up.
 >
 > From a machine where Coffer is _not_ running:
+>
 > `age-keygen -pq > coffer_identity`
+>
 > `scp <(cat coffer_identity | age-keygen -y) root@remote:/etc/credstore/coffer.recipients.laptop`
 
 ## Usage
