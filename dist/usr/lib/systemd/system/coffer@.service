@@ -10,4 +10,4 @@ StateDirectory=coffer
 DynamicUser=yes
 ImportCredential=coffer.recipients.*
 ImportCredential=coffer.identities.*
-ExecStart=/usr/local/bin/coffer.py
+ExecStart=/usr/bin/coffer.py
