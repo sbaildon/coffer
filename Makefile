@@ -1,6 +1,6 @@
 ROOTFS ?= rootfs
 
-.PHONY: rootfs clean
+.PHONY: rootfs install clean
 
 UNITS = $(patsubst dist/%,$(ROOTFS)/%,$(wildcard dist/usr/lib/systemd/system/*))
 
@@ -24,6 +24,9 @@ $(ROOTFS)/usr/bin/coffer.py: coffer.py
 $(ROOTFS)/usr/lib/systemd/system/%: dist/usr/lib/systemd/system/%
 	install --directory --mode=755 $(ROOTFS)/usr/lib/systemd/system
 	install --mode=644 $< $@
+
+install: rootfs
+	cp --recursive $(ROOTFS) /var/lib/portables/coffer
 
 clean:
 	rm -rf $(ROOTFS)
