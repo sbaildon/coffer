@@ -1,0 +1,6 @@
+[Unit]
+Description=Credential encryption FIFO
+
+[Socket]
+ListenStream=/run/coffer.socket
+Accept=yes

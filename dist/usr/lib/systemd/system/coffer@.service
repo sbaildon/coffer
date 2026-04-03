@@ -1,0 +1,13 @@
+[Unit]
+Description=Encrypt and store credential
+
+[Service]
+Type=oneshot
+StandardInput=socket
+StandardOutput=socket
+StandardError=journal
+StateDirectory=coffer
+DynamicUser=yes
+ImportCredential=coffer.recipients.*
+ImportCredential=coffer.identities.*
+ExecStart=/usr/local/bin/coffer.py
