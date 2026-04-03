@@ -52,7 +52,7 @@ delimited list of keys.
 > You will eventually lose access to credentials if you use only the quick-start identity.
 > The quick-start identity is encrypted with a key unique to the machine where the command is run. Loss of the machine means loss of the encryption key, thus all credentials.
 > It's recommended you create at least one more age identity on a remote machine that can be backed up.
-
+>
 > From a machine where Coffer is _not_ running:
 > `age-keygen -pq > coffer_identity`
 > `scp <(cat coffer_identity | age-keygen -y) root@remote:/etc/credstore/coffer.recipients.laptop`
