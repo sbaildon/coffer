@@ -4,7 +4,7 @@ ROOTFS ?= rootfs
 
 UNITS = $(patsubst dist/%,$(ROOTFS)/%,$(wildcard dist/usr/lib/systemd/system/*))
 
-MOUNTPOINTS = proc sys dev run tmp var/tmp
+MOUNTPOINTS = proc sys dev run tmp var/tmp var/lib/coffer
 
 rootfs: $(ROOTFS)/etc/os-release $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf $(ROOTFS)/usr/bin/coffer.py $(UNITS)
 	install --directory --mode=755 $(addprefix $(ROOTFS)/,$(MOUNTPOINTS))
