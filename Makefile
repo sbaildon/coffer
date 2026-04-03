@@ -6,7 +6,7 @@ UNITS = $(patsubst dist/%,$(ROOTFS)/%,$(wildcard dist/usr/lib/systemd/system/*))
 
 MOUNTPOINTS = proc sys dev run tmp var/tmp var/lib/coffer
 
-rootfs: $(ROOTFS)/etc/os-release $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf $(ROOTFS)/usr/bin/coffer.py $(UNITS)
+rootfs: $(ROOTFS)/etc/os-release $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf $(ROOTFS)/usr/local/bin/coffer.py $(UNITS)
 	install --directory --mode=755 $(addprefix $(ROOTFS)/,$(MOUNTPOINTS))
 
 $(ROOTFS)/etc/os-release:
@@ -17,9 +17,9 @@ $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf:
 	install --directory --mode=755 $(ROOTFS)/etc
 	touch $@
 
-$(ROOTFS)/usr/bin/coffer.py: coffer.py
-	install --directory --mode=755 $(ROOTFS)/usr/bin
-	install --mode=755 coffer.py $(ROOTFS)/usr/bin/coffer.py
+$(ROOTFS)/usr/local/bin/coffer.py: coffer.py
+	install --directory --mode=755 $(ROOTFS)/usr/local/bin
+	install --mode=755 coffer.py $(ROOTFS)/usr/local/bin/coffer.py
 
 $(ROOTFS)/usr/lib/systemd/system/%: dist/usr/lib/systemd/system/%
 	install --directory --mode=755 $(ROOTFS)/usr/lib/systemd/system
