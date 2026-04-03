@@ -42,7 +42,7 @@ systemd-creds decrypt /etc/credstore.encrypted/coffer.identities.localhost \
 ### Extra recipients and identities
 
 Any `coffer.identities.*` or `coffer.recipients.*` files located in
-the standard systemd-creds search paths, `/usr/lib/credstore` and
+the standard [systemd-creds](https://www.freedesktop.org/software/systemd/man/latest/systemd-creds.html) search paths, `/usr/lib/credstore` and
 `/etc/credstore/`, including the `.encrypted` equivalents; will be used
 by Coffer to encrypt (recipients) or decrypt (identities). Recipient
 and identity files take a form understood by age, typically a newline
