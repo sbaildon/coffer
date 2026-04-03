@@ -32,6 +32,10 @@ def get(name):
     subprocess.run(["age", "--decrypt", *flags, os.path.join(STATE_DIRECTORY, "credentials", name)], check=True)
 
 
+def delete(name):
+    os.remove(os.path.join(STATE_DIRECTORY, "credentials", name))
+
+
 # Check if the peer address is a systemd abstract namespace socket
 sock = socket.socket(fileno=sys.stdin.fileno())
 try:
@@ -56,6 +60,8 @@ else:
             post(name)
         case "GET":
             get(name)
+        case "DELETE":
+            delete(name)
         case _:
             print(f"unknown action: {action}")
 
