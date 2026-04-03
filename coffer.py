@@ -11,6 +11,8 @@ import sys
 CREDENTIALS_DIRECTORY = os.environ["CREDENTIALS_DIRECTORY"]
 STATE_DIRECTORY = os.environ["STATE_DIRECTORY"]
 
+os.makedirs(os.path.join(STATE_DIRECTORY, "credentials"), exist_ok=True)
+
 def post(name):
     flags = []
 
