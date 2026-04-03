@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install age, as Coffer requires shelling out for credential management
+Install [age](https://age-encryption.org), as Coffer requires shelling out for credential management
 
 ```bash
 dnf install -y age
