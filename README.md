@@ -33,7 +33,8 @@ Create the keys used to encrypt and decrypt credentials
 age-keygen -pq | systemd-creds encrypt - /etc/credstore.encrypted/coffer.identities.localhost
 
 # generate a public key to be used for encryption
-systemd-creds decrypt /etc/credstore.encrypted/coffer.identities.localhost | age-keygen -y > /etc/credstore/coffer.recipients.localhost
+systemd-creds decrypt /etc/credstore.encrypted/coffer.identities.localhost \
+    | age-keygen -y > /etc/credstore/coffer.recipients.localhost
 ```
 
 ### Extra recipients and identities
