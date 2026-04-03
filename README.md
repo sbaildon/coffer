@@ -63,7 +63,7 @@ delimited list of keys.
 
 The Coffer protocol is pretty simple:
 
-Send a binary message framed with a `POST`, `GET`, or `DELETE` action and the id of the credential.
+Send a binary message framed with a `POST`, `GET`, or `DELETE` action, the id of the credential, terminated with `\n`.
 In the case of `POST`, the credential's content is everything following the `\n` after the id.
 
 ```bash
