@@ -46,6 +46,13 @@ by Coffer to encrypt (recipients) or decrypt (identities). Recipient
 and identity files take a form understood by age, typically a newline
 delimited list of keys.
 
+> [!NOTE]
+> You will eventually lose access to credentials if you use only the quick-start identity.
+> The quick-start identity is encrypted with a key unique to the machine where the command is run, and loss of the machine means loss of the encryption key, thus all credentials.
+> It's recommended you create at least one more age identity that can be backed-up on a remote machine, like your laptop.
+> 
+> `age-keygen -pq | ssh -t root@remote 'systemd-creds encrypt - /etc/credstore.encrypted/coffer.identities.laptop'`
+
 ## Usage
 
 The Coffer protocol is pretty simple:
