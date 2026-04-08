@@ -18,9 +18,11 @@ def post(name):
         flags.append(f"--recipients-file={f}")
 
     output = os.path.join(STATE_DIRECTORY, "credentials", name)
-    age = subprocess.Popen(["age", "--encrypt", *flags], stdin=sys.stdin, stdout=subprocess.PIPE)
-    subprocess.run(["install", "-D", "--mode=640", "/dev/stdin", output], stdin=age.stdout, check=True)
-    age.wait()
+    encrypted = subprocess.run(["age", "--encrypt", *flags], stdin=sys.stdin, stdout=subprocess.PIPE, check=True).stdout
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+    with open(output, "wb") as f:
+        os.fchmod(f.fileno(), 0o640)
+        f.write(encrypted)
 
 
 def get(name):
