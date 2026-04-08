@@ -22,7 +22,9 @@
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/darwin/apple-sdk/frameworks.nix
         devShells.default = pkgs.mkShell {
           buildInputs = [
-            pkgs.python315
+            pkgs.python314
+            pkgs.socat
+            pkgs.coreutils
           ];
         };
 
