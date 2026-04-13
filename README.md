@@ -86,7 +86,7 @@ Coffer integrates with the [`LoadCredential=`](https://www.freedesktop.org/softw
 
 ```ini
 [Service]
-LoadCredential=myapp.stripe_key:/run/coffer.socket
+LoadCredential=myapp.stripe_secret_key:/run/coffer.socket
 ```
 
 ```bash
