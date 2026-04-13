@@ -90,5 +90,5 @@ LoadCredential=myapp.stripe_key:/run/coffer.socket
 ```
 
 ```bash
-systemd-run --pty --property=LoadCredential=myapp.stripe_key:/run/coffer.socket -- bash -c 'cat $CREDENTIALS_DIRECTORY/myapp.stripe_key'
+systemd-run --pty --property=LoadCredential=myapp.stripe_secret_key:/run/coffer.socket -- bash -c 'cat $CREDENTIALS_DIRECTORY/myapp.stripe_key'
 ```
