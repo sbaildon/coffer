@@ -1,0 +1,54 @@
+= COFFER-SYSTEMD(7)
+
+Coffer integrates tightly with systemd, acting as a first-class citizen in the ecosystem.
+
+== Protecting encryption keys
+
+Coffer uses https://www.freedesktop.org/software/systemd/man/latest/systemd-creds.html[`systemd-creds`] to protect the key it uses to manage credentials.
+
+1. Create an age identity, and have systemd encrypt it. This identity is sensitive information.
+
+[sources,bash]
+----
+age-keygen -pq | systemd-creds encrypt - /etc/credstore.encrypted/coffer.identities.localhost
+----
+
+2. Create a recipient from the identity. Recipients are public data, protecting them with encryption isn't neccesary.
+
+[sources,bash]
+----
+systemd-creds decrypt /etc/credstore.encrypted/coffer.identities.localhost \
+    | age-keygen -y > /etc/credstore/coffer.recipients.localhost
+----
+
+== Coffer as a credential provider
+
+Coffer can be used to load credentials into a systemd service with the
+https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#LoadCredential=ID:PATH[`LoadCredential`]
+directive
+
+
+1. Define your service with `LoadCredential=` to read from the coffer socket
+
+[source,ini]
+----
+[Service]
+LoadCredential=myapp.stripe_secret_key:/run/coffer.socket
+----
+
+2. From your servcice, access your credential in the file at `$CREDENTIALS_DIRECTORY/<id>`. In node:
+
+[source,javascript]
+----
+const fs = require('fs');
+const Stripe = require('stripe');
+
+const key = fs.readFileSync(
+  `${process.env.CREDENTIALS_DIRECTORY}/myapp.stripe_secret_key`, 'utf8'
+).trim();
+
+const stripe = Stripe(key);
+
+const customer = await stripe.customers.create({ email: 'test@example.com' });
+console.log(customer.id);
+----

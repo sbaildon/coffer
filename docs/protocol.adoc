@@ -1,0 +1,60 @@
+= COFFER-PROTOCOL(7)
+
+Coffer exposes a simple line-oriented text protocol over a Unix domain socket.
+
+Each request consists of a single newline-terminated command of the form:
+
+    COMMAND KEY [VALUE]\n
+
+Fields are separated by a single ASCII space (0x20). The newline
+character is required and terminates the request.
+
+The following commands are supported:
+
+
+=== POST
+
+Associate VALUE with KEY.
+
+
+=== GET
+
+Retrieve the value associated with KEY.
+
+=== DELETE
+
+Remove the credential associated with KEY.
+
+== GRAMMAR
+
+Requests follow the grammar:
+
+    request  = command SP key [SP value] LF
+    command  = "GET" / "POST" / "DELETE"
+    key      = 1*(VCHAR)
+    value    = *(VCHAR)
+    SP       = %x20
+    LF       = %x0A
+
+== EXAMPLES
+
+* Create a new credential
+
+[source,sh]
+----
+printf "POST myapp.stripe_secret_key\n%s" sk_test_abc | socat - UNIX-CONNECT:/run/coffer.socket
+----
+
+* Retrieve a credential
+
+[source,sh]
+----
+printf "GET myapp.stripe_key\n" | socat - UNIX-CONNECT:/run/coffer.socket
+----
+
+* Delete a credential
+
+[source,sh]
+----
+printf "DELETE myapp.stripe_key\n" | socat - UNIX-CONNECT:/run/coffer.socket
+----
