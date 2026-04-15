@@ -14,6 +14,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        pandoc-bin = import ./flakes/pandoc-bin.nix { inherit pkgs system; };
       in
       {
         formatter = pkgs.nixfmt-rfc-style;
@@ -23,6 +24,7 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.python314
+            pandoc-bin
             pkgs.erofs-utils
             pkgs.socat
             pkgs.coreutils
