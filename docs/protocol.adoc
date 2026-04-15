@@ -9,9 +9,6 @@ Each request consists of a single newline-terminated command of the form:
 Fields are separated by a single ASCII space (0x20). The newline
 character is required and terminates the request.
 
-The following commands are supported:
-
-
 === POST
 
 Associate VALUE with KEY.
