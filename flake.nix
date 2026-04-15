@@ -23,6 +23,7 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.python314
+            pkgs.erofs-utils
             pkgs.socat
             pkgs.coreutils
           ];

@@ -9,6 +9,9 @@ MOUNTPOINTS = proc sys dev run tmp var/tmp var/lib/coffer
 rootfs: $(ROOTFS)/etc/os-release $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf $(ROOTFS)/usr/local/bin/coffer.py $(UNITS)
 	install --directory --mode=755 $(addprefix $(ROOTFS)/,$(MOUNTPOINTS))
 
+image: rootfs
+	mkfs.erofs -zzstd --all-root ./coffer.raw $(ROOTFS)/
+
 $(ROOTFS)/etc/os-release:
 	install --directory --mode=755 $(ROOTFS)/etc
 	printf 'ID=coffer\nVERSION_ID=0.1.0\nPORTABLE_PREFIXES=coffer\n' > $@
