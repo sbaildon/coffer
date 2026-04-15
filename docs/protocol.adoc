@@ -16,7 +16,6 @@ The following commands are supported:
 
 Associate VALUE with KEY.
 
-
 === GET
 
 Retrieve the value associated with KEY.
