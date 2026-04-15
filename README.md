@@ -1,6 +1,6 @@
 # Coffer
 
-Kind of like Vault, with all the pros and cons of being much simpler.
+Simple secret management for serivces, integrating with systemd
 
 ## Installation
 
