@@ -11,7 +11,7 @@ rootfs: $(ROOTFS)/etc/os-release $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.c
 
 $(ROOTFS)/etc/os-release:
 	install --directory --mode=755 $(ROOTFS)/etc
-	printf 'ID=coffer\nVERSION_ID=1.0\nPORTABLE_PREFIXES=coffer\n' > $@
+	printf 'ID=coffer\nVERSION_ID=0.1.0\nPORTABLE_PREFIXES=coffer\n' > $@
 
 $(ROOTFS)/etc/machine-id $(ROOTFS)/etc/resolv.conf:
 	install --directory --mode=755 $(ROOTFS)/etc
