@@ -58,7 +58,7 @@ else:
     action, name = raw.decode().split(None, 1)
 
     match action:
-        case "POST":
+        case "SET":
             post(name)
         case "GET":
             get(name)

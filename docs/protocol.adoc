@@ -9,7 +9,7 @@ Each request consists of a single newline-terminated command of the form:
 Fields are separated by a single ASCII space (0x20). The newline
 character is required and terminates the request.
 
-=== POST
+=== SET
 
 Associate VALUE with KEY.
 
@@ -26,7 +26,7 @@ Remove the credential associated with KEY.
 Requests follow the grammar:
 
     request  = command SP key [SP value] LF
-    command  = "GET" / "POST" / "DELETE"
+    command  = "GET" / "SET" / "DELETE"
     key      = 1*(VCHAR)
     value    = *(VCHAR)
     SP       = %x20
@@ -38,7 +38,7 @@ Requests follow the grammar:
 
 [source,sh]
 ----
-printf "POST myapp.stripe_secret_key\n%s" sk_test_abc | socat - UNIX-CONNECT:/run/coffer.socket
+printf "SET myapp.stripe_secret_key\n%s" sk_test_abc | socat - UNIX-CONNECT:/run/coffer.socket
 ----
 
 * Retrieve a credential

@@ -65,11 +65,11 @@ delimited list of keys.
 
 The Coffer protocol is simple:
 
-Send a binary message framed with a `POST`, `GET`, or `DELETE` action, the id of the credential, terminated with `\n`.
-In the case of `POST`, the credential's content is everything following the `\n` after the id.
+Send a binary message framed with a `SET`, `GET`, or `DELETE` action, the id of the credential, terminated with `\n`.
+In the case of `SET`, the credential's content is everything following the `\n` after the id.
 
 ```bash
-printf "POST myapp.stripe_secret_key\n%s" sk_test_abc | socat - UNIX-CONNECT:/run/coffer.socket
+printf "SET myapp.stripe_secret_key\n%s" sk_test_abc | socat - UNIX-CONNECT:/run/coffer.socket
 ```
 
 ```bash
